@@ -65,6 +65,7 @@ class TitleState extends MusicBeatState
 		FlxG.sound.muteKeys = [FlxKey.ZERO];
 
 		PlayerSettings.init();
+		MobileData.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 

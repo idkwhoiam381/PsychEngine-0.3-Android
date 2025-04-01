@@ -18,7 +18,7 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Toggle Practice Mode', 'Botplay', 'Exit to menu'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', #if mobile 'Chart Editor', 'Character Editor', #end 'Toggle Practice Mode', 'Botplay', 'Exit to menu'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 
@@ -112,6 +112,8 @@ class PauseSubState extends MusicBeatSubstate
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+		
+		addVirtualPad("UP_DOWN", "A");
 	}
 
 	override function update(elapsed:Float)
@@ -165,6 +167,11 @@ class PauseSubState extends MusicBeatSubstate
 				case "Restart Song":
 					MusicBeatState.resetState();
 					FlxG.sound.music.volume = 0;
+				case 'Chart Editor':
+					FlxG.switchState(new ChartingState());
+				case "Character Editor":
+        			PlayState.storyWeek = 6; //For loading week 6 assets
+        			LoadingState.loadAndSwitchState(new CharacterEditorState(PlayState.SONG.player2), true);
 				case 'Botplay':
 					PlayState.cpuControlled = !PlayState.cpuControlled;
 					PlayState.usedPractice = true;

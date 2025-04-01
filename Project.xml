@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin'" file="PsychEngine" packageName="com.ninjamuffin99.funkin" package="com.ninjamuffin99.funkin" main="Main" version="0.2.7" company="ninjamuffin99" />
+	<app title="FNF' Psych Engine 0.3" file="PsychEngine" packageName="com.shadowmario.psychengine03" package="com.shadowmario.psychengine03" main="Main" version="0.2.7" company="ShadowMario" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -27,16 +27,23 @@
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+	<window if="mobile" orientation="landscape" fullscreen="true" resizable="false" allow-shaders="true" require-shaders="true" allow-high-dpi="true" />
 
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
-	<set name="BUILD_DIR" value="export/debug" if="debug" />
-	<set name="BUILD_DIR" value="export/release" unless="debug" />
-	<set name="BUILD_DIR" value="export/32bit" if="32bit" />
+	<set name="BUILD_DIR" value="export/debug" if="debug" unless="termux" />
+ 	<set name="BUILD_DIR" value="export/release" unless="debug || termux" />
+ 	<set name="BUILD_DIR" value="export/32bit" if="32bits" unless="termux" />
+ 	
+ 	<!-- For Termux -->
+ 	<section if="termux">
+ 	    <set name="BUILD_DIR" value="/root/PsychEngine03/export/debug" if="debug" />
+ 	    <set name="BUILD_DIR" value="/root/PsychEngine03/export/release" unless="debug" />
+ 	    <set name="BUILD_DIR" value="/root/PsychEngine03/export/32bit" if="32bits" />
+ 	</section>
 
 	<classpath name="source" />
 
@@ -119,6 +126,12 @@
 	<assets path="assets/week6_high"    library="week6_high"    exclude="*.ogg" if="web"/>
 	<assets path="assets/week6_high"    library="week6_high"    exclude="*.mp3" unless="web"/>
 	
+	<!-- Mobile Assets -->
+	<assets path="mobile/preload"        rename="assets"                exclude="*.ogg"        if="web"/>
+ 	<assets path="mobile/preload"        rename="assets"                exclude="*.mp3"       unless="web"/>
+ 	<assets path="mobile/shared"         rename="assets/shared"         library="shared"        exclude="*.ogg" if="web"/>
+ 	<assets path="mobile/shared"         rename="assets/shared"         library="shared"        exclude="*.mp3" unless="web"/>
+	
 	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 	<!-- <template path='mods' /> -->
@@ -130,7 +143,7 @@
 		THEN UHHH I USED THE NAME OF THE FONT WITH SETFORMAT() ON THE TEXT!!!
 		NOT USING A DIRECT THING TO THE ASSET!!!
 	-->
-	<assets path="assets/fonts" embed='true'/>
+	<assets path="assets/fonts"/>
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
@@ -184,6 +197,22 @@
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+	
+	<!--Used for Izzy Engine's crash handler-->
+ 	<haxedef name="HXCPP_CHECK_POINTER" />
+ 	<haxedef name="HXCPP_STACK_LINE" />
+ 	<haxedef name="HXCPP_STACK_TRACE" />
+ 	
+ 	<haxedef name="message.reporting" value="pretty" />
+ 	<haxedef name='no-deprecation-warnings' />
+ 	
+ 	<!-- Do whatever you want I'm tired uninstall and install everytime -->
+ 	<certificate path="key.keystore" password="psychextended" alias="psychex" alias-password="psychextended" if="android" unless="debug" />
+ 	<android target-sdk-version="34" if="termux"/>
+ 	
+ 	<!--Macro fixes-->
+ 	<haxeflag name="--macro" value="allowPackage('flash')" />
+ 	<haxeflag name="--macro" value="include('my.pack')" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
