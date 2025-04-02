@@ -110,6 +110,7 @@ class CharacterEditorState extends MusicBeatState
 		leHealthIcon = new HealthIcon(char.healthIcon, false);
 		add(leHealthIcon);
 		leHealthIcon.y = FlxG.height - 150;
+		leHealthIcon.cameras = [camHUD];
 		dumbTexts = new FlxTypedGroup<FlxText>();
 		add(dumbTexts);
 
@@ -935,7 +936,6 @@ class CharacterEditorState extends MusicBeatState
 				}
 			}
 		}
-		camHUD.zoom = FlxG.camera.zoom;
 		super.update(elapsed);
 	}
 

@@ -60,7 +60,7 @@ class OptionsState extends MusicBeatState
 		}
 		changeSelection();
 		
-		var tipText:FlxText = new FlxText(10, 12, 0, 'Press Y to Go Mobile Controls Menu\nPress X to Go In Extra Key Return Menu', 16);
+		var tipText:FlxText = new FlxText(10, 12, 0, 'Press X to Go Mobile Controls Menu\nPress Y to Go In Extra Key Return Menu', 16);
 		tipText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		tipText.borderSize = 2;
 		tipText.scrollFactor.set();

@@ -147,7 +147,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			bgFade.alpha += 0.5 * elapsed;
 			if(bgFade.alpha > 0.5) bgFade.alpha = 0.5;
 
-			if(FlxG.keys.justPressed.ANY) {
+			if(FlxG.keys.justPressed.ANY || TouchFunctions.touchJustPressed) {
 				if(!daText.finishedText) {
 					if(daText != null) {
 						daText.killTheTimer();
