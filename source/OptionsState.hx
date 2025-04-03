@@ -1024,6 +1024,22 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 		var daText:String = '';
 		switch(options[curSelected]) {
+		    //Mobile
+		    case 'VirtualPad Alpha':
+				daText = "Changes VirtualPad Alpha -cool feature";
+		    case 'Extra Controls':
+				daText = "Allow Extra Controls";
+		    case 'Extra Control Location':
+				daText = "Choose Extra Control Location";
+		    case 'Hitbox Design':
+				daText = "Choose how your hitbox should look like.";
+		    case 'Hitbox Opacity':
+				daText = "Changes hitbox opacity -omg";
+			case 'Wide Screen Mode':
+				daText = "If checked, The game will stetch to fill your whole screen. (WARNING: Can result in bad visuals & break some mods that resizes the game/cameras)";
+		    case 'Storage Type':
+				daText = "Which folder Psych Engine should use?";
+
 			case 'Framerate':
 				daText = "Pretty self explanatory, isn't it?\nDefault value is 60.";
 			case 'Note Delay':
