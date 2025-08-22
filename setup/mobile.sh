@@ -13,5 +13,6 @@ haxelib install flixel-ui 2.4.0 --quiet
 haxelib install hscript 2.4.0 --quiet
 haxelib git hxcpp https://github.com/PsychExtendedThings/hxcpp --quiet
 haxelib git lime https://github.com/PsychExtendedThings/lime-new --quiet
+haxelib git hxCodec https://github.com/JuniorNovoa1/hxCodec-2.5.1-MacOS-Support --quiet
 haxelib install openfl 9.3.3 --quiet
 echo Finished!
